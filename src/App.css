@@ -23,6 +23,19 @@
   color: #61dafb;
 }
 
+.custom-item {
+  
+}
+
+.item-image {
+  width: 250px
+}
+
+.item-image > img {
+  max-width: 200px;
+}
+
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

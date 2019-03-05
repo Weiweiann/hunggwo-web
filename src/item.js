@@ -1,5 +1,9 @@
 const items = [
   {
+    name: '壓克力製品',
+    photoCount: 16,
+  },
+  {
     name: '不鏽鋼磁性胸牌',
     photoCount: 2,
   },
@@ -14,10 +18,6 @@ const items = [
   {
     name: '各式精美公佈欄',
     photoCount: 5,
-  },
-  {
-    name: '壓克力製品',
-    photoCount: 16,
   },
   {
     name: '大圖輸出',

@@ -44,8 +44,12 @@ class Photos extends Component {
     }
 
     return (
-      <div class="grid">
-        {images}
+      <div>
+        <h3 className="text-center">成品展示</h3>
+        <hr/>
+        <div class="grid">
+          {images}
+        </div>
       </div>
     )
   }
@@ -64,15 +68,67 @@ class Photo extends Component {
 
 class Jumbotron extends Component {
   render() {
+    const categories = this.props.items.map((item, index) => {
+      return (
+        <li className="nav-item" onClick={() => this.props.handleClick(item)} key={index}>
+          <span className={'nav-link ' + (this.props.item.name === item.name ? 'active' : '') }>{item.name}</span>
+        </li>
+      )
+    })
+
     return (
       <div className="jumbotron">
-        <img src={logo}/>
-        <h1>弘國廣告</h1>
+        <div className="jumbotron-header">
+          <img className="img-fluid" src={logo}/>
+          <div className="" >
+            <h1>弘國廣告</h1>
+            <h4>台中市西區忠明路59號</h4>
+            <h4>04-23145649</h4>
+            <a href="mailto:hunggwo@seed.net.tw">hunggwo@seed.net.tw</a>
+          </div>
+        </div>
+        
         <hr></hr>
-        <p>{this.props.item.name}</p>
+        <ul className="nav nav-pills nav-fill justify-content-center">{categories}</ul>
       </div>
     )
   }
+}
+
+function GoogleMap(props) {
+  return (
+    <div>
+      <h3>聯絡我們</h3>
+      <iframe
+        className="img-fluid"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3640.3191685237184!2d120.65938431474355!3d24.160536878901937!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34693d8395c7601b%3A0x29e789c6323ee1db!2z5byY5ZyL5buj5ZGK!5e0!3m2!1szh-TW!2stw!4v1551750786215"
+        width="600"
+        height="450"
+        frameBorder="0" allowFullScreen></iframe>
+    </div>
+  )
+}
+
+
+class FooterComp extends Component {
+  render() {
+    return (
+      <div>
+        <GoogleMap></GoogleMap>
+      </div>
+    )
+  }
+}
+
+function MailIcon(props) {
+  return (
+    <a href="mailto:hunggwo@seed.net.tw" className="fixed-mail-icon">
+      <span class="fa-stack fa-2x">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="far fa-envelope fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  )
 }
 
 
@@ -87,38 +143,16 @@ class App extends Component {
   }
 
   handleClick(item) {
-    console.log(item);
     this.setState({ selectItem: item });
-  }
-
-  componentDidMount() {
-    console.log(this.state);
   }
 
   render() {
     return (
       <div className="container">
-        <Jumbotron item={this.state.selectItem}/>
-        <Category items={this.state.items} handleClick={this.handleClick}></Category>
-  
-        <Photos item={this.state.selectItem}/>
-     
-       
-
-        {/* <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header> */}
+        <Jumbotron item={this.state.selectItem} items={this.state.items} handleClick={this.handleClick}/>
+        <Photos item={this.state.selectItem} />
+        {/* <FooterComp></FooterComp> */}
+        <MailIcon></MailIcon>
       </div>
     );
   }
